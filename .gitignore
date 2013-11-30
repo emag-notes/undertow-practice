@@ -1,0 +1,11 @@
+*.iml
+.idea
+.settings
+.project
+.classpath
+target
+*~
+
+*.txt
+out.dat
+counter.dat

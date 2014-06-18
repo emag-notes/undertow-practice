@@ -10,21 +10,21 @@ import io.undertow.util.Headers;
  */
 public class HelloWorldServer {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        Undertow server = Undertow.builder()
-                            .addHttpListener(8080, "localhost")
-                            .setHandler(new HttpHandler() {
-                                @Override
-                                public void handleRequest(final HttpServerExchange exchange) throws Exception {
+    Undertow server = Undertow.builder()
+      .addHttpListener(8080, "localhost")
+      .setHandler(new HttpHandler() {
+        @Override
+        public void handleRequest(final HttpServerExchange exchange) throws Exception {
 
-                                    exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-                                    exchange.getResponseSender().send("Hello World");
+          exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
+          exchange.getResponseSender().send("Hello World");
 
-                                }
-                            }).build();
-        server.start();
-        System.out.println("HelloWorldServer is running!");
-    }
-    
+        }
+      }).build();
+    server.start();
+    System.out.println("HelloWorldServer is running!");
+  }
+
 }

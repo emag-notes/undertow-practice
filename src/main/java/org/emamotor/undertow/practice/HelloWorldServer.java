@@ -12,9 +12,12 @@ public class HelloWorldServer {
 
   public static void main(String[] args) {
 
+    HttpHandler root = new HelloWorldHandler();
+    root = new PreHelloWorldHandler(root);
+
     Undertow server = Undertow.builder()
       .addHttpListener(8080, "localhost")
-      .setHandler(new HelloWorldHandler())
+      .setHandler(root)
       .build();
     server.start();
     System.out.println("HelloWorldServer is running!");

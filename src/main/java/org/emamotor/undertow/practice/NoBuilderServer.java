@@ -62,12 +62,9 @@ public class NoBuilderServer {
           .addAll(OptionMap.builder().getMap()) // serverOptions
           .getMap(),
         BUFFER_SIZE);
-      openListener.setRootHandler(new HttpHandler() {
-        @Override
-        public void handleRequest(HttpServerExchange exchange) throws Exception {
-          exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-          exchange.getResponseSender().send("Hello World(No Builder)");
-        }
+      openListener.setRootHandler(exchange -> {
+        exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
+        exchange.getResponseSender().send("Hello World(No Builder)");
       });
 
       ChannelListener<AcceptingChannel<StreamConnection>> acceptListener =

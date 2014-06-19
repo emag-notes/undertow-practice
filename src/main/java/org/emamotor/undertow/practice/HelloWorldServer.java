@@ -14,15 +14,8 @@ public class HelloWorldServer {
 
     Undertow server = Undertow.builder()
       .addHttpListener(8080, "localhost")
-      .setHandler(new HttpHandler() {
-        @Override
-        public void handleRequest(final HttpServerExchange exchange) throws Exception {
-
-          exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-          exchange.getResponseSender().send("Hello World");
-
-        }
-      }).build();
+      .setHandler(new HelloWorldHandler())
+      .build();
     server.start();
     System.out.println("HelloWorldServer is running!");
   }
